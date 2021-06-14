@@ -1,0 +1,39 @@
+<!-- magazines -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if not messages %}
+  <br><br><br>
+{% endif %}
+<div class="container" id="mag">
+    <h1 class="text-center text-danger">Magazines</h1>
+
+    <div class="row">
+      {% for magazine in magazines %}
+        <div class="col-lg-4" data-aos="fade-up">
+
+          <a href="{{magazine.pdf.url}}">
+            <div class="d-flex justify-content-center">
+              <img style="height: 30vh;background-color: white;" src="{{magazine.pdf.url}}" alt="">
+            </div>
+  
+            <h3 class="text-center text-light">{{magazine.name}}</h3>
+            <p class="text-center text-light">author : {{magazine.author}}</p>
+            <p class="text-center text-light">release date : {{magazine.date}}</p>
+          </a>
+
+        </div>
+     
+   
+      {% endfor %}
+      
+    </div>
+
+
+
+  </div>
+
+
+
+  <!-- end of magazines -->
+  {% endblock %}

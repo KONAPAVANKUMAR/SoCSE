@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if not messages %}
+  <br><br><br>
+{% endif %}
+<div class="container" id="events">
+        
+    {% for year in events_years %}
+    <br><br>
+    <h1 class="text-light text-center">{{year}} Events</h1>
+    {% for event in events %}
+        {% if event.get_year == year %}
+        
+        {% for eventtype in eventtypes %}
+
+
+
+
+        {% if event.type == eventtype %}
+
+        <h2 id="{{year}}_{{eventtype.id}}" class="text-danger">{{eventtype}}</h2>
+
+        <div class="row container" style="margin-top: 5vh;">
+            <div class="col" data-aos="fade-right">
+            <img src="{{event.cover.url}}" height="300" style="object-fit: cover;" width="500" alt="">
+            </div>
+            <div data-aos="fade-left" class="col text-center d-flex justify-content-center align-items-center">
+            <div>
+                <h3 class="text-danger">{{event.name}}</h3>
+                <p class="text-light">{{event.description}}</p>
+                <p class="text-light">{{event.datetime}}</p>
+                <p class="text-light">organised by <span class="text-warning">{{event.organiser}}</span></p>
+                {% if is_logged %}
+                {% if user.email in event.participants %}
+                <a class="btn btn-danger" href="/events/unregister/{{user.id}}/{{event.id}}/">unregister</a>
+                {% else %}
+                <a class="btn btn-success" href="/events/register/{{user.id}}/{{event.id}}/">register</a>
+                {% endif %}
+                {% endif %}
+            </div>
+            
+
+            
+                
+            </div>
+            
+        </div>
+        {% endif %}
+
+        {% endfor %}
+        
+        {% endif %}
+    
+    {% endfor %}
+    {% endfor %}
+
+
+</div>
+
+{% endblock %}
+
+
+

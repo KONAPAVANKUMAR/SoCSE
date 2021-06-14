@@ -1,0 +1,110 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if not messages %}
+  <br><br><br>
+{% endif %}
+<!-- placements -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="container">
+    <h1 class="text-center text-danger">Placements</h1>
+    <br>
+    {% for year in placement_years %}
+
+    {% for placement in placements %}
+    
+    {% if placement.get_year == year %}
+    <h1 id="{{placement.get_year}}" class="text-danger text-center">{{year}}</h1>
+          <div class="row container" style="margin-top: 5vh;">
+            <div class="col" data-aos="fade-right">
+              <div class="d-flex justify-content-center">
+                <img src="{{placement.company_name.company_logo.url}}" height="200" width="300" style="object-fit: cover;" width="500" alt="">
+              </div>
+              
+              <h3 class="text-danger text-center">{{placement.company_name.name}}</h3>
+                <p class="text-light text-center">{{placement.date}}</p>
+            </div>
+            <div data-aos="fade-left" class="col text-center d-flex justify-content-center align-items-top">
+              <div>
+                
+                <table style="width: 30vw;" class="table bg-dark text-light">
+                  <tr>
+                    <th>name</th>
+                    <th>package</th>
+                  </tr>
+                  {% for student in placement.students %}
+                  <tr>
+                    <td>{{student.0}}</td>
+                    <td>{{student.1}} LPA</td>
+                  </tr>
+                  {% endfor %}
+                </table>   
+              </div>
+           
+            </div>
+            
+          </div>
+          {% endif %}
+
+        {% endfor %}
+
+    {% endfor %}
+ 
+</div>
+
+{% for key,value in total_companies %}
+    <p>{{value}}</p>
+{% endfor %}
+
+<canvas class="container" id="myChart" style="width: 100vw;height: 50vh;"></canvas>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+
+
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels : [{% for year,value in total_companies %}{{year}},{% endfor %}],
+        datasets: [
+        {
+            label: 'total_companies',
+            data: [{% for year,value in total_companies %}{{value}},{% endfor %}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 1
+        },
+
+        {
+            label: 'total_students',
+            data: [{% for year,value in total_students %}{{value}},{% endfor %}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+                'skyblue',
+            ],
+            borderWidth: 1
+        },
+    
+    
+    ]
+    },
+    options: {
+        scales: {
+            y: {
+
+            }
+        }
+    }
+});
+</script>
+
+
+
+
+{% endblock %}

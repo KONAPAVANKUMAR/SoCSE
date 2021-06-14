@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}  
+
+    <div class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div id="hero">
+          <div class="carousel-caption">
+            <h5 class="text-light text-center">School of <span class="text-danger">Computer Science & Engineering</span></h5>
+            {% if not announcements %}
+            <p>KLE Tech Computer Science & Engineering program provides a unique environment for learning through a curriculum designed for experiential learning. This experience is ensured by creating a curriculum designed by inputs from industry, academia and recent technological advancements.</p>
+            {% else %}
+            <p class="d-none d-md-block">KLE Tech Computer Science & Engineering program provides a unique environment for learning through a curriculum designed for experiential learning. This experience is ensured by creating a curriculum designed by inputs from industry, academia and recent technological advancements.</p>
+            {% endif %}
+            <br><br><br>
+            <h5 class="text-danger text-center">Announcements</h5>
+            
+            {% if announcements %}
+            <marquee direction = "up">
+              {% for announcement in announcements %}
+              <p>{{announcement.description}}</p>
+              {% endfor %}
+              <p></p>
+            </marquee>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+  <br><br><br><br>
+  <div class="container" data-aos="fade-up" style="width: 80vw;">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                <img src="{% static 'img/1.png' %}" alt="">
+            </div>
+            <br>
+            <h4 class="text-center text-danger">
+                Student Centric Environment
+            </h4>
+            <p class="text-center text-light">
+                SoCSE provides an environment and space for overall development in spears of academics, co-curricular & extra-curricular activities.
+            </p>
+            
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                <img src="{% static 'img/2.png' %}" alt="">
+            </div>
+            <br>
+            <h4 class="text-center text-danger">
+                Experiential Learning
+            </h4>
+            <br>
+            <p class="text-center text-light">
+                SoCSE believes in educating students through learning by doing. The curriculum involves well designed laboratory courses involving structured and open ended experiments. Theoretical learning in the courses is enhanced by course project and integrated projects.
+            </p>
+            
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                <img src="{% static 'img/3.png' %}" alt="">
+            </div>
+            <br>
+            <h4 class="text-center text-danger">
+                Curriculum Focused on Recent Trends
+            </h4>
+            <p class="text-center text-light">
+                Students at SoCSE explore innovative problems in a variety of areas including the development of software to improve education
+            </p>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                <img src="{% static 'img/4.png' %}" alt="">
+            </div>
+            <br>
+            <h4 class="text-center text-danger">
+                Faculty Innovations in Teaching Learning
+            </h4>
+            <p class="text-center text-light">
+                Faculty at SoCSE use various teaching-learning methodologies for course development and delivery
+            </p>
+        </div>
+        
+    </div>
+    
+</div>
+
+  <footer id="footer">
+
+    
+    <div class="footer-top">
+      <div class="container d-flex justify-content-between">
+
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <a href="index.html" class="scrollto"><h3 class="text-light">So<span class="text-danger">CSE</span></h3></a>
+            <p>KLE Tech Computer Science & Engineering program provides a unique environment for learning through a curriculum designed for experiential learning. This experience is ensured by creating a curriculum designed by inputs from industry, academia and recent technological advancements.</p>
+          </div>
+
+        
+
+          
+          
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              Vidya Nagar, Hubli <br>
+              Karnataka 580031<br>
+
+              <strong>Phone:</strong>  0836 237 8300<br>
+
+            </p>
+
+            <div class="d-flex justify-content-around" style="width: 10vw;">
+              <a href="https://twitter.com/kletechbvb"><img height="30" src="{% static 'img/twitter.png' %}" alt=""></a>
+              <a href="https://instagram.com/socse_2020"><img height="30" src="{% static 'img/instagram.png' %}" alt=""></a>
+              <a href="https://www.facebook.com/kletechbvb/"><img height="30" src="{% static 'img/facebook.png' %}" alt=""></a>
+              
+            </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+  </footer><!-- End  Footer -->
+{% endblock %}

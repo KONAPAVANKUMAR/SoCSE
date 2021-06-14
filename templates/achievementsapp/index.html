@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- achievements -->
+{% if not messages %}
+  <br><br><br>
+{% endif %}
+<div class="container" id="achievements">
+    <h1 class="text-center text-danger">Achievements</h1>
+    <div class="row">
+      {% for achievement in achievements %}
+        {% if achievement.approved %}
+        <div class="col-lg-4" data-aos="fade-up">
+
+          <a href="{{achievement.proof.url}}">
+            <div class="d-flex justify-content-center">
+              <img style="height: 30vh;background-color: white;" src="{{achievement.proof.url}}" alt="">
+            </div>
+  
+            <h3 class="text-center text-light">{{achievement.user}}</h3>
+            <p class="text-center text-light">{{achievement.description}}</p>
+            <p class="text-center text-light">{{achievement.date}}</p>
+          </a>
+
+        </div>
+        {% endif %}
+     
+   
+      {% endfor %}
+      
+    </div>
+
+    <p class="text-light text-center">have an achievement ? <span><a href="{% url 'addachievementpage' %}">let us know</a></span></p>
+
+  </div>
+
+
+  <!-- end achievements -->
+
+{% endblock %}
+
+
+
