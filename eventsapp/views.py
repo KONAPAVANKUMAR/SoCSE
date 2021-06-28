@@ -35,3 +35,10 @@ def homepageview(request):
         'events' : events,
         }
     return render(request,"eventsapp/index.html",context)
+import json
+def print_event(request,eventid):
+    event = EventModel.objects.get(id = eventid)
+    context = {'event':event,}
+    print(context)
+    # return redirect(request.META['HTTP_REFERER'])
+    return render(request,"eventsapp/printevent.html",context)

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SoCSE</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+
+
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <br><br>
+<div id="printableArea" style="width: 70vw;" class="container">
+    
+
+    <div class="d-flex justify-content-between">
+        <div>
+            <h2>{{event.name}}</h2>
+            <p>{{event.description}}</p>
+        </div>
+        
+
+        <div>
+            <p>date : {{event.datetime}}</p>
+            <p>organizer : {{event.organiser}}</p>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <tr class="bg-info text-light">
+            <th>S.No</th>
+            <th>Participant</th>
+        </tr>
+        {% for participant in event.participants %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{participant}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="container" style="width: fit-content;">
+        <input type="button" class="btn btn-light" onclick="printDiv('printableArea')" value="print" />
+    </div>
+   
+</div>
+</body>
+
+<script>
+    function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script>
+
+</html>
